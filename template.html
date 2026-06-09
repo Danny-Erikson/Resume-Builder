@@ -32,7 +32,8 @@
 
       .header {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         gap: 10px;
 
         background-color: #d5dee6;
@@ -52,6 +53,19 @@
         color: #464a4e;
         font-style: italic;
         font-size: 14px;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #464a4e;
+      }
+
+      .location {
+        color: #464a4e;
+        font-style: italic;
+        font-size: 18px;
+        text-align: right;
       }
 
       .resume-body {
@@ -84,6 +98,11 @@
       .item-subtitle {
         color: #555;
         font-size: 14px;
+        padding-bottom: 2px;
+      }
+
+      .description {
+        font-size: 14px;
       }
 
       ul {
@@ -105,12 +124,28 @@
       .skill {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
 
       .skill img {
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+
+      .highlight {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .highlight img {
+        width: 40px;
+        height: 40px;
         object-fit: contain;
       }
     </style>
@@ -118,15 +153,26 @@
   <body>
     <div class="page">
       <div class="header">
-        <div class="name">{{ name }}</div>
-        <div class="contact">{{ email }} | {{ phone }}</div>
+        <div>
+          <div class="name">{{ name }}</div>
+          <div class="contact">{{ email }} | {{ phone }}</div>
+        </div>
+        <div>
+          <div class="title">Full Stack Developer</div>
+          <div class="location">in {{ location }}</div>
+        </div>
       </div>
 
       <div class="resume-body">
         <aside class="sidebar">
           <h2>Languages</h2>
 
-          {% for skill in languages %}
+          {% for skill in highlight %}
+          <div class="highlight">
+            <img src="{{ skill.logo }}" alt="{{ skill.name }} logo" />
+            <span>{{ skill.name }}</span>
+          </div>
+          {% endfor %} {% for skill in languages %}
           <div class="skill">
             <img src="{{ skill.logo }}" alt="{{ skill.name }} logo" />
             <span>{{ skill.name }}</span>
@@ -135,14 +181,14 @@
         </aside>
 
         <main class="content">
-          <h2>Degrees</h2>
+          <h2>Education</h2>
           {% for degree in education %}
           <div class="item">
             <div class="item-title">{{ degree.type }}</div>
             <div class="item-subtitle">
               {{ degree.title }} | {{ degree.date }} | {{ degree.school }}
             </div>
-            <div>{{ degree.description }}</div>
+            <div class="description">{{ degree.description }}</div>
           </div>
           {% endfor %}
           <h2>Projects</h2>

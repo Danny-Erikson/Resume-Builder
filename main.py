@@ -9,8 +9,8 @@ resume_data = {
     "name": "Daniel Erikson",
     "email": "derikson413@gmail.com",
     "phone": "555-555-5555",
-
-    "languages": [
+    "location": "Los Angeles",
+    "highlight": [
         {
             "name": "Python",
             "logo": "assets/logos/python.svg"
@@ -18,7 +18,9 @@ resume_data = {
         {
             "name": "Java",
             "logo": "assets/logos/java.svg"
-        },
+        }
+    ],
+    "languages": [
         {
             "name": "JavaScript",
             "logo": "assets/logos/javascript.svg"
@@ -99,7 +101,7 @@ resume_data = {
             "title": "Full Stack Web Development",
             "school": "Pasadena City College",
             "date": "2025",
-            "description": "Earned by talking classes in react, SQL, HTML, CSS and Other general education classes"
+            "description": "Completed coursework in full stack web development, covering client-side and server-side programming, secure web application development, database management, testing, deployment, and maintenance. Built foundational skills in HTML, CSS, JavaScript, React, Node.js, SQL, Python, and responsive web design."
         }
     ]
 }
