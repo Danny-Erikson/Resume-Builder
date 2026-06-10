@@ -5,61 +5,89 @@ from weasyprint import HTML
 
 
 # NOTE: We will use tinyDB, this is just to get the template set up
+# Icons from devicon
 resume_data = {
     "name": "Daniel Erikson",
     "email": "derikson413@gmail.com",
     "phone": "555-555-5555",
+    "address": "123 Main Street, Anytown, NY 12345",
     "location": "Los Angeles",
-    "highlight": [
+    "languages": [
         {
             "name": "Python",
-            "logo": "assets/logos/python.svg"
+            "logo": "assets/logos/python.svg",
+            "highlight": 1
         },
         {
             "name": "Java",
-            "logo": "assets/logos/java.svg"
-        }
-    ],
-    "languages": [
+            "logo": "assets/logos/java.svg",
+            "highlight": 0
+        },
         {
             "name": "JavaScript",
-            "logo": "assets/logos/javascript.svg"
-        },
-        {
-            "name": "React",
-            "logo": "assets/logos/react.svg"
-        },
-        {
-            "name": "SQL",
-            "logo": "assets/logos/SQL.svg"
+            "logo": "assets/logos/javascript.svg",
+            "highlight": 0
         },
         {
             "name": "HTML",
-            "logo": "assets/logos/html.svg"
+            "logo": "assets/logos/html.svg",
+            "highlight": 0
         },
         {
             "name": "CSS",
-            "logo": "assets/logos/css.svg"
-        },
-        {
-            "name": "Rust",
-            "logo": "assets/logos/rust.svg"
+            "logo": "assets/logos/css.svg",
+            "highlight": 0
         },
         {
             "name": "C",
-            "logo": "assets/logos/c.svg"
+            "logo": "assets/logos/c.svg",
+            "highlight": 0
         },
         {
             "name": "C++",
-            "logo": "assets/logos/c++.svg"
-        },
-        {
-            "name": "C#",
-            "logo": "assets/logos/csharp.svg"
+            "logo": "assets/logos/c++.svg",
+            "highlight": 0
         },
         {
             "name": "Go",
-            "logo": "assets/logos/go.svg"
+            "logo": "assets/logos/go.svg",
+            "highlight": 0
+        }
+    ],
+    "frameworks": [
+        {
+            "name": "React",
+            "logo": "assets/logos/react.svg",
+            "highlight": 0
+        },
+        {
+            "name": "Node.js",
+            "logo": "assets/logos/node.svg",
+            "highlight": 0
+        },
+    ],
+    "database": [
+        {
+            "name": "PostgreSQL",
+            "logo": "assets/logos/postgre.svg",
+            "highlight": 1
+        },
+        {
+            "name": "MySQL",
+            "logo": "assets/logos/mysql.svg",
+            "highlight": 0
+        },
+        {
+            "name": "SQLite",
+            "logo": "assets/logos/sqlite.svg",
+            "highlight": 0
+        },
+    ],
+    "tools": [
+        {
+            "name": "Git",
+            "logo": "assets/logos/git.svg",
+            "highlight": 1
         }
     ],
 
