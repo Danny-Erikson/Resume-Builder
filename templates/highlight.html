@@ -5,6 +5,12 @@
     <title>{{ name }} Resume</title>
 
     <style>
+      :root {
+        --Header-size: 20px;
+        --Sub-header-size: 14px;
+        --Body-size: 14px;
+      }
+
       @page {
         size: Letter;
         margin: 0;
@@ -18,6 +24,7 @@
       body {
         margin: 0;
         padding: 0;
+        font-family: Georgia, serif;
       }
 
       .page {
@@ -91,21 +98,22 @@
 
       .item-title {
         font-weight: bold;
-        font-size: 20px;
+        font-size: var(--Header-size);
       }
 
       .item-subtitle {
         color: #555;
-        font-size: 14px;
+        font-size: var(--Sub-header-size);
         padding-bottom: 2px;
       }
 
       .description {
-        font-size: 14px;
+        font-size: var(--Body-size);
       }
 
       ul {
         margin-top: 5px;
+        font-size: var(--Body-size);
       }
 
       h2 {
@@ -187,7 +195,7 @@
           </div>
           {% endif %} {% endfor %}
 
-          <h2>Database</h2>
+          <h2>Databases</h2>
           {% for skill in database %} {% if skill.highlight == 1 %}
           <div class="highlight">
             <img src="{{ skill.logo }}" alt="{{ skill.name }} logo" />
