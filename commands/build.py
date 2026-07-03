@@ -13,7 +13,12 @@ with open('HardData.json', 'r', encoding='utf-8') as file:
 
 
 def build(extra_args: list):
-    print("Build resume")
+    print(r"""    ____        _ __    __
+   / __ )__  __(_) /___/ /
+  / __  / / / / / / __  / 
+ / /_/ / /_/ / / / /_/ /  
+/_____/\__,_/_/_/\__,_/   
+                          """)
     render_resume(data)
 
 # *Helper Functions
