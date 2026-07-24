@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ name }} Resume</title>
+    <style>
+      @page {
+        size: Letter;
+        margin: 0.48in 0.52in 0.45in;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: #111;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 10.5pt;
+        line-height: 1.08;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      header h1 {
+        margin: 0 0 2px;
+        font-size: 26pt;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .contact-line {
+        font-size: 10pt;
+        white-space: nowrap;
+      }
+
+      .section {
+        margin-top: 8px;
+      }
+
+      .section-title {
+        margin: 0 0 4px;
+        padding-bottom: 1px;
+        border-bottom: 0.75px solid #222;
+        font-size: 12pt;
+        font-variant: small-caps;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+      }
+
+      .entry {
+        margin: 0 12px 6px;
+        break-inside: avoid;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .row-left {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .row-right {
+        flex: 0 0 auto;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .primary {
+        font-size: 11pt;
+        font-weight: 700;
+      }
+
+      .secondary {
+        margin-top: 1px;
+        font-style: italic;
+      }
+
+      .education .entry {
+        margin-bottom: 5px;
+      }
+
+      ul {
+        margin: 3px 0 0 25px;
+        padding-left: 0;
+      }
+
+      li {
+        margin: 0 0 1px;
+        padding-left: 1px;
+      }
+
+      .project-meta {
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      .skills {
+        margin: 0 12px;
+      }
+
+      .skill-row {
+        margin-bottom: 1px;
+      }
+
+      .skill-label {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{{ name }}</h1>
+      <div class="contact-line">
+        {% set contacts = [] %} 
+        {% if phone %} 
+        {% set _ = contacts.append(phone)%}
+        {% endif %}
+        {% if email %}
+        {% set _ = contacts.append( '<a href="mailto:' ~ email ~ '">' ~ email ~ '</a>' ) %}
+        {% endif %} 
+        {% if github %} 
+        {% set github_text = github_display 
+            | default(github, true) 
+            | replace("https://", "") 
+            | replace("http://", "") %}
+        {% set _ =contacts.append( '<a href="' ~ github ~ '">' ~ github_text ~ '</a>' ) %}
+        {% endif %} 
+        {{ contacts | join(' &nbsp;|&nbsp; ') | safe }}
+      </div>
+    </header>
+
+    {% if education %}
+    <section class="section education">
+        <h2 class="section-title">Education</h2>
+
+        {% for learning in education %}
+        <article class="entry">
+            <div class="row">
+                <div class="row-left primary">{{ learning.school }}</div>
+                <div class="row-right">{{ learning.location }}</div>
+            </div>
+            <div class="row secondary">
+                <div class="row-left">{{ learning.type }} in {{ learning.title }}</div>
+                <div class="row-right">{{ learning.dates }}</div>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if experience %}
+    <section class="section">
+        <h2 class="section-title">Experience</h2>
+
+        {% for job in experience %}
+        <article class="entry">
+            <div class="row">
+                <div class="row-left primary">{{ job.title }}</div>
+                <div class="row-right">{{ job.dates }}</div>
+            </div>
+            <div class="row secondary">
+                <div class="row-left">{{ job.company }}</div>
+                <div class="row-right">{{ job.location }}</div>
+            </div>
+
+            {% if job.bullets %}
+            <ul>
+                {% for bullet in job.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if projects %}
+    <section class="section">
+        <h2 class="section-title">Projects</h2>
+
+        {% for project in projects %}
+        <article class="entry">
+            <div class="row">
+                <div class="row-left primary">
+                    {% if project.url %}
+                        <a href="{{ project.url }}">{{ project.name }}</a>
+                    {% else %}
+                        {{ project.name }}
+                    {% endif %}
+                    {% if project.tech %}
+                        <span class="project-meta"> | {{ project.tech | join(', ') }}</span>
+                    {% endif %}
+                </div>
+                <div class="row-right">{{ project.dates }}</div>
+            </div>
+
+            {% if project.bullets %}
+            <ul>
+                {% for bullet in project.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if skills %}
+    <section class="section">
+        <h2 class="section-title">Technical Skills</h2>
+
+        <div class="skills">
+            {% for group in skills %}
+            <div class="skill-row">
+                <span class="skill-label">{{ group.category }}:</span>
+                {{ group["items"] | join(", ") }}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+  </body>
+</html>
